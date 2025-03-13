@@ -2,41 +2,42 @@
 
 import flet as ft
 import os
-
 from download_single import download_single_video
 from download_playlist import download_playlist
 from codecs_config import (
     VIDEO_CODECS, AUDIO_CODECS,
     DEFAULT_VIDEO_CODEC, DEFAULT_AUDIO_CODEC
 )
+from themes.theme_cyberpunk import get_cyberpunk_theme
 
 def main(page: ft.Page):
+    # Si deseas usar el tema, descomenta estas dos líneas.
+    page.theme_mode = ft.ThemeMode.DARK
+    page.theme = get_cyberpunk_theme()
+
     page.title = "Descargador de YouTube con Flet"
     page.window_width = 800
     page.window_height = 600
 
-    # Campos
     single_url_field = ft.TextField(label="URL de Video", width=500)
     playlist_url_field = ft.TextField(label="URL de Lista de Reproducción", width=500)
     output_folder_field = ft.TextField(label="Carpeta de destino", width=500, read_only=True)
     cookies_file_field = ft.TextField(label="Archivo de Cookies (opcional)", width=500, read_only=True)
 
-    # DropDown para video
     video_codec_dropdown = ft.Dropdown(
         label="Códec de Video",
         width=200,
-        value=DEFAULT_VIDEO_CODEC,  # valor por defecto
+        value=DEFAULT_VIDEO_CODEC,  # "auto"
         options=[ft.dropdown.Option(v) for v in VIDEO_CODECS],
     )
-    # DropDown para audio
     audio_codec_dropdown = ft.Dropdown(
         label="Códec de Audio",
         width=200,
-        value=DEFAULT_AUDIO_CODEC,  # valor por defecto
+        value=DEFAULT_AUDIO_CODEC,  # "auto"
         options=[ft.dropdown.Option(a) for a in AUDIO_CODECS],
     )
 
-    # Text para log
+    # Text de log
     log_output = ft.Text(value="", selectable=True, expand=True)
 
     def log_message(msg: str):
@@ -61,12 +62,14 @@ def main(page: ft.Page):
 
     pick_folder_button = ft.ElevatedButton(
         text="Seleccionar carpeta",
-        icon=ft.icons.FOLDER_OPEN,
+        # Se cambia ft.icons.FOLDER_OPEN a ft.Icons.FOLDER_OPEN
+        icon=ft.Icons.FOLDER_OPEN,
         on_click=lambda _: dir_picker.get_directory_path()
     )
     pick_cookies_button = ft.ElevatedButton(
         text="Seleccionar cookies",
-        icon=ft.icons.FILE_OPEN,
+        # Se cambia ft.icons.FILE_OPEN a ft.Icons.FILE_OPEN
+        icon=ft.Icons.FILE_OPEN,
         on_click=lambda _: file_picker.pick_files(allow_multiple=False)
     )
 
@@ -129,19 +132,24 @@ def main(page: ft.Page):
 
     btn_download_single = ft.ElevatedButton(
         text="Descargar Video",
-        icon=ft.icons.DOWNLOAD,
+        # Cambiamos ft.icons.DOWNLOAD por ft.Icons.DOWNLOAD
+        icon=ft.Icons.DOWNLOAD,
         on_click=download_single_click
     )
     btn_download_playlist = ft.ElevatedButton(
         text="Descargar Playlist",
-        icon=ft.icons.DOWNLOAD,
+        icon=ft.Icons.DOWNLOAD,
         on_click=download_playlist_click
     )
 
+    # Se reemplaza style="headlineMedium" por theme_style=ft.ThemeStyle.HEADLINE_MEDIUM
     page.add(
         ft.Column(
             controls=[
-                ft.Text("Descargador de YouTube con Flet", style="headlineMedium"),
+                ft.Text(
+                    "Descargador de YouTube con Flet",
+                    style="headlineMedium",
+                ),
                 single_url_field,
                 playlist_url_field,
                 ft.Row([output_folder_field, pick_folder_button]),
@@ -154,6 +162,7 @@ def main(page: ft.Page):
             expand=True,
         )
     )
+
     page.update()
 
 if __name__ == "__main__":
