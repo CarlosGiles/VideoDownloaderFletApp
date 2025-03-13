@@ -11,16 +11,23 @@ from codecs_config import (
 from themes.theme_cyberpunk import get_cyberpunk_theme
 
 def main(page: ft.Page):
+    page.adaptive = True
     # Si deseas usar el tema, descomenta estas dos líneas.
-    page.theme_mode = ft.ThemeMode.DARK
-    page.theme = get_cyberpunk_theme()
+    #page.theme_mode = ft.ThemeMode.DARK # es el tema por defecto de flet
+    page.bgcolor = "#21303B"  # color de fondo
+    cyberpunk = get_cyberpunk_theme()
+    # Forzamos la app a usar SIEMPRE EL TEMA CYBERPUNK
+    #page.theme = cyberpunk       # tema “light” por defecto
+    page.dark_theme = cyberpunk  # tema “dark” (igual al anterior)
+    # Forzamos “modo light” para que se use `page.theme` y no el "modo dark" del sistema.
+    #page.theme_mode = ft.ThemeMode.LIGHT
 
-    page.title = "Descargador de YouTube con Flet"
+    page.title = "Flet Downloader"
     page.window_width = 800
     page.window_height = 600
 
-    single_url_field = ft.TextField(label="URL de Video", width=500)
-    playlist_url_field = ft.TextField(label="URL de Lista de Reproducción", width=500)
+    single_url_field = ft.TextField(label="URL de Video", width=700)
+    playlist_url_field = ft.TextField(label="URL de Lista de Reproducción", width=700)
     output_folder_field = ft.TextField(label="Carpeta de destino", width=500, read_only=True)
     cookies_file_field = ft.TextField(label="Archivo de Cookies (opcional)", width=500, read_only=True)
 
@@ -147,7 +154,7 @@ def main(page: ft.Page):
         ft.Column(
             controls=[
                 ft.Text(
-                    "Descargador de YouTube con Flet",
+                    "Descargador de YT con Flet",
                     style="headlineMedium",
                 ),
                 single_url_field,
