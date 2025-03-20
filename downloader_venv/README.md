@@ -79,3 +79,33 @@ flet build windows -v
 ```
 
 For more details on building Windows package, refer to the [Windows Packaging Guide](https://flet.dev/docs/publish/windows/).
+
+## Estructura de archivos
+```
+downloader_venv/
+├── Include/
+├── Lib/
+├── Scripts/
+├── share/
+├── src/
+│   ├── __pycache__/
+│   ├── assets/
+│   ├── components/
+│   │   ├── btn.py
+│   │   └── banner.py
+│   ├── scripts/
+│   │   ├── __init__.py     # (opcional, recomendable para que 'scripts' sea tratado como paquete)
+│   │   ├── codecs_config.py
+│   │   ├── download_playlist.py
+│   │   └── download_single.py
+│   ├── themes/
+│   ├── __init__.py
+│   └── main.py
+├── storage/
+│   └── (aquí pueden guardarse archivos varios, como logs o temporales)
+├── .gitignore
+├── descargas_registradas.txt
+├── pyproject.toml
+├── pyvenv.cfg
+└── README.md
+```
