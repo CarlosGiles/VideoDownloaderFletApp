@@ -11,7 +11,7 @@ especificados. Por defecto: H.264 (video) + AAC (audio), en contenedor MP4.
 
 import os
 import yt_dlp
-from codecs_config import (
+from .codecs_config import (
     FFMPEG_VIDEO_LIBS, FFMPEG_AUDIO_LIBS,
     DEFAULT_VIDEO_CODEC, DEFAULT_AUDIO_CODEC,
     is_auto

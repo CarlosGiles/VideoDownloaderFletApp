@@ -11,7 +11,7 @@ import os
 import yt_dlp
 import logging
 
-from codecs_config import (
+from .codecs_config import (
     FFMPEG_VIDEO_LIBS, FFMPEG_AUDIO_LIBS,
     DEFAULT_VIDEO_CODEC, DEFAULT_AUDIO_CODEC,
     is_auto

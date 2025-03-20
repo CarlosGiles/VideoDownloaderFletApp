@@ -2,9 +2,9 @@
 
 import flet as ft
 import os
-from download_single import download_single_video
-from download_playlist import download_playlist
-from codecs_config import (
+from scripts.download_single import download_single_video
+from scripts.download_playlist import download_playlist
+from scripts.codecs_config import (
     VIDEO_CODECS, AUDIO_CODECS,
     DEFAULT_VIDEO_CODEC, DEFAULT_AUDIO_CODEC
 )
