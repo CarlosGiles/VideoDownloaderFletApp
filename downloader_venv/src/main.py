@@ -18,6 +18,7 @@ from components.check import AudioOnlyCheckbox
 from components.btn_picker import FolderPickerButton, CookiesPickerButton
 
 def main(page: ft.Page):
+    page.icon = "assets/icon.png"
     page.adaptive = True
     page.bgcolor = "#21303B"
     cyberpunk = get_cyberpunk_theme()
