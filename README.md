@@ -1,5 +1,6 @@
 ![portadatech](https://github.com/user-attachments/assets/09de5266-6d96-43a2-83cf-4707bdb34fb3)
 
+[LinkedIn](https://www.linkedin.com/in/carlosgilesing/)
 # YT Downloader con Flet y yt-dlp
 
 Este repositorio contiene una aplicación de escritorio (incluida la opción web) escrita en [Flet](https://flet.dev/), diseñada para descargar videos (o solo audio) desde YouTube, con la finalidad de descargar videos propios de manera rápida en casos de recuperación de archivos. Internamente se basa en la librería [yt-dlp](https://github.com/yt-dlp/yt-dlp) para realizar la descarga y manipulación de videos.
