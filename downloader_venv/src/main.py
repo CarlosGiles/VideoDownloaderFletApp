@@ -125,7 +125,7 @@ def main(page: ft.Page):
                 log_message("Descarga completada.\n")
 
         except Exception as ex:
-            log_message(f"Error al descargar: {ex}\n")
+            log_message(f"Error de origen al descargar: {ex}, se descargó en otro formato\n")
 
     def download_playlist_click(e):
         url = playlist_url_field.value.strip()
