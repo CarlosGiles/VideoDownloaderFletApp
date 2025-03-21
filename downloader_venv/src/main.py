@@ -1,25 +1,21 @@
 # src/main.py
-
 import flet as ft
 import os
-
 # Scripts de descarga
 from scripts.download_single import download_single_video
 from scripts.download_playlist import download_playlist
 from scripts.download_only_audio import download_audio_only
-
 # Configuración de códecs
 from scripts.codecs_config import (
     VIDEO_CODECS, AUDIO_CODECS,
     DEFAULT_VIDEO_CODEC, DEFAULT_AUDIO_CODEC
 )
-
 # Tema
 from themes.theme_cyberpunk import get_cyberpunk_theme
-
 # Componentes personalizados
 from components.btn import PrimaryButton
 from components.check import AudioOnlyCheckbox
+from components.btn_picker import FolderPickerButton, CookiesPickerButton
 
 def main(page: ft.Page):
     page.adaptive = True
@@ -76,15 +72,17 @@ def main(page: ft.Page):
             cookies_file_field.value = e.files[0].path
             page.update()
 
-    pick_folder_button = ft.ElevatedButton(
+    # Usamos los botones de btn_picker.py
+    pick_folder_button = FolderPickerButton(
         text="Seleccionar carpeta",
-        icon=ft.Icons.FOLDER_OPEN,
-        on_click=lambda _: dir_picker.get_directory_path()
+        icon=ft.icons.FOLDER_OPEN,
+        picker_control=dir_picker,
     )
-    pick_cookies_button = ft.ElevatedButton(
+
+    pick_cookies_button = CookiesPickerButton(
         text="Seleccionar cookies",
-        icon=ft.Icons.FILE_OPEN,
-        on_click=lambda _: file_picker.pick_files(allow_multiple=False)
+        icon=ft.icons.FILE_OPEN,
+        picker_control=file_picker
     )
 
     # --- Botones de descarga ---
@@ -170,13 +168,14 @@ def main(page: ft.Page):
 
         except Exception as ex:
             log_message(f"Error en la playlist: {ex}\n")
-
-    btn_download_single = ft.ElevatedButton(
-        text="Descargar Video",
-        icon=ft.Icons.DOWNLOAD,
-        on_click=download_single_click
-    )
-
+    
+    # Botón con componente personalizado
+    btn_download_single = PrimaryButton(text="Descargar Video",
+                                        on_click=download_single_click,
+                                        color="#36CACC",
+                                        icon=ft.Icons.DOWNLOAD,
+                                        )
+    # Botón creado con Flet
     btn_download_playlist = ft.ElevatedButton(
         text="Descargar Playlist",
         icon=ft.Icons.DOWNLOAD,
@@ -184,10 +183,8 @@ def main(page: ft.Page):
     )
 
     # Checkbox para indicar SOLO AUDIO
-    audio_only_check = AudioOnlyCheckbox(label="Descargar solo audio")
-
-    # Ejemplo: botón con tu componente PrimaryButton (opcional).
-    btn_primario = PrimaryButton(text="Botón Demo", icon=ft.Icons.STAR, on_click=lambda e: log_message("¡Botón primario presionado!"))
+    audio_only_check = AudioOnlyCheckbox(label="Descargar solo audio",
+                                         label_color="#36CACC")
 
     # Interfaz
     page.add(
@@ -209,7 +206,6 @@ def main(page: ft.Page):
                     btn_download_playlist,
                     # Checkbox "Solo audio" al lado del botón de playlist (y sirve también para single).
                     audio_only_check,
-                    btn_primario
                 ]),
                 ft.Text("Log de eventos:"),
                 log_output
