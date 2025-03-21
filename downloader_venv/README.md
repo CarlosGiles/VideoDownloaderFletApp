@@ -92,11 +92,14 @@ downloader_venv/
 │   ├── assets/
 │   ├── components/
 │   │   ├── btn.py
-│   │   └── banner.py
+│   │   ├── __init__.py
+│   │   ├── btn_picker.py
+│   │   └── check.py
 │   ├── scripts/
 │   │   ├── __init__.py     # (opcional, recomendable para que 'scripts' sea tratado como paquete)
 │   │   ├── codecs_config.py
 │   │   ├── download_playlist.py
+│   │   ├── download_only_audio.py
 │   │   └── download_single.py
 │   ├── themes/
 │   ├── __init__.py
