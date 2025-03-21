@@ -8,7 +8,7 @@ authors = [
     { name = "CarlosGiles", email = "carlosgiles49@gmail.com" }
 ]
 dependencies = [
-  "flet==0.27.6","yt_dlp==2022.02.19"
+  "flet==0.27.6","yt_dlp==2025.02.19"
 ]
 
 [tool.flet]
