@@ -44,8 +44,8 @@ flowchart LR
 ### Clonar el Repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/YouTube-Downloader-Flet.git
-cd YouTube-Downloader-Flet
+git clone https://github.com/CarlosGiles/VideoDownloaderFletApp.git
+cd downloader_venv
 ```
 
 (Opcionalmente, hazlo en una ruta lo más corta posible, especialmente en Windows.)
