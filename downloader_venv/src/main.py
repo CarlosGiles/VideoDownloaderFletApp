@@ -75,13 +75,13 @@ def main(page: ft.Page):
     # Usamos los botones de btn_picker.py
     pick_folder_button = FolderPickerButton(
         text="Seleccionar carpeta",
-        icon=ft.icons.FOLDER_OPEN,
+        icon=ft.Icons.FOLDER_OPEN,
         picker_control=dir_picker,
     )
 
     pick_cookies_button = CookiesPickerButton(
         text="Seleccionar cookies",
-        icon=ft.icons.FILE_OPEN,
+        icon=ft.Icons.FILE_OPEN,
         picker_control=file_picker
     )
 
@@ -190,7 +190,7 @@ def main(page: ft.Page):
     page.add(
         ft.Column(
             controls=[
-                ft.Text("Descargador de YT con Flet", style="headlineMedium"),
+                ft.Text("Descargador de YT con Flet", theme_style=ft.TextThemeStyle.HEADLINE_MEDIUM),
                 single_url_field,
                 playlist_url_field,
                 ft.Row([output_folder_field, pick_folder_button]),
@@ -207,7 +207,7 @@ def main(page: ft.Page):
                     # Checkbox "Solo audio" al lado del botón de playlist (y sirve también para single).
                     audio_only_check,
                 ]),
-                ft.Text("Log de eventos:"),
+                ft.Text("Log de eventos:", theme_style=ft.TextThemeStyle.LABEL_MEDIUM),
                 log_output
             ],
             expand=True,

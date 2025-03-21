@@ -3,7 +3,7 @@
 import flet as ft
 
 def FolderPickerButton(text: str = "Seleccionar carpeta",
-                       icon=ft.icons.FOLDER_OPEN,
+                       icon=ft.Icons.FOLDER_OPEN,
                        picker_control: ft.FilePicker = None,
                        bgcolor=None, color=None, style=None
 ):
@@ -26,7 +26,7 @@ def FolderPickerButton(text: str = "Seleccionar carpeta",
     )
 
 def CookiesPickerButton(text: str = "Seleccionar cookies",
-                        icon=ft.icons.FILE_OPEN,
+                        icon=ft.Icons.FILE_OPEN,
                         picker_control: ft.FilePicker = None,
                         bgcolor=None, color=None, style=None
     
