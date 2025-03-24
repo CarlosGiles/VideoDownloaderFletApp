@@ -45,11 +45,8 @@ flowchart TB
 ## Estructura de Archivos
 
 ```bash
-downloader_venv/
-├── Include/
-├── Lib/
-├── Scripts/
-├── share/
+VideoDownloaderFletApp/
+├── build/                      # apps empaquetadas
 ├── src/
 │   ├── assets/                 # iconos u otros recursos
 │   ├── components/             # controles personalizados de Flet
@@ -61,9 +58,9 @@ downloader_venv/
 ├── descargas_registradas.txt
 ├── pyproject.toml
 ├── pyvenv.cfg
-└── README.md    # Design Doc
-LICENSE
-README.md
+├── DesignDoc.md
+└── README.md
+└── LICENSE
 ```
 
 ### Carpeta `src`
