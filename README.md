@@ -48,7 +48,7 @@ flowchart LR
 
 ```bash
 git clone https://github.com/CarlosGiles/VideoDownloaderFletApp.git
-cd downloader_venv
+cd VideoDownloaderFletApp
 ```
 
 (Opcionalmente, hazlo en una ruta lo más corta posible, especialmente en Windows.)
