@@ -7,6 +7,7 @@ from .codecs_config import (
     DEFAULT_AUDIO_CODEC,
     is_auto
 )
+from .ffmpeg_utils import configure_ffmpeg_for_ydl, is_ffmpeg_available
 
 def download_audio_only(
     video_url: str,
@@ -57,6 +58,14 @@ def download_audio_only(
 
     if cookies_file:
         ydl_opts["cookiefile"] = cookies_file
+    
+    # Configurar FFmpeg automáticamente
+    ydl_opts = configure_ffmpeg_for_ydl(ydl_opts)
+    
+    # Verificar que FFmpeg esté disponible antes de proceder
+    if not is_ffmpeg_available() and postprocessors:
+        print("Advertencia: FFmpeg no está disponible. Descargando audio sin conversión...")
+        ydl_opts["postprocessors"] = []
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         print(f"[Solo audio] Descargando {video_url} con códec '{audio_codec}'...")

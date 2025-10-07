@@ -16,6 +16,7 @@ from .codecs_config import (
     DEFAULT_VIDEO_CODEC, DEFAULT_AUDIO_CODEC,
     is_auto
 )
+from .ffmpeg_utils import configure_ffmpeg_for_ydl, is_ffmpeg_available
 
 def download_single_video(
     video_url: str,
@@ -69,6 +70,16 @@ def download_single_video(
 
     if cookies_file:
         ydl_opts["cookiefile"] = cookies_file
+    
+    # Configurar FFmpeg automáticamente
+    ydl_opts = configure_ffmpeg_for_ydl(ydl_opts)
+    
+    # Verificar que FFmpeg esté disponible antes de proceder
+    if not is_ffmpeg_available():
+        print("Advertencia: FFmpeg no está disponible. Intentando descarga sin procesamiento...")
+        # Cambiar a formato que no requiera FFmpeg
+        ydl_opts["format"] = "best[ext=mp4]/best"
+        ydl_opts["postprocessors"] = []
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         print(f"Descargando (single) con códec_video={video_codec} códec_audio={audio_codec}: {video_url}")
